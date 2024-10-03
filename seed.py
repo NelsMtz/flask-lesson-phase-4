@@ -1,6 +1,6 @@
 
 from app import app
-from models import User, db, Profile, Post
+from models import User, db, Profile, Post, Group
 
 with app.app_context():
     # User.query.delete()
@@ -11,6 +11,7 @@ with app.app_context():
     User.query.delete()
     Profile.query.delete()
     Post.query.delete()
+    Group.query.delete()
     
     
     print("Seeding user data..........")
@@ -48,6 +49,28 @@ with app.app_context():
     
     db.session.add_all([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10])
     db.session.commit()
+    
+    
+    # Add groups
+    g1 = Group(group_name="Thanos")
+    g2 = Group(group_name="Standard")
+    g3 = Group(group_name="Mpeketoni")
+    g4 = Group(group_name="Riverroad")
+    g5 = Group(group_name="Recce")
+    
+    db.session.add_all([g1, g2, g3, g4, g5])
+    db.session.commit()
+    
+    # Add users to a group
+    g1.users.append(user1)
+    g1.users.append(user2)
+    g1.users.append(user3)
+    
+    # Add groups to user
+    user1.groups.append(g1)
+    user1.groups.append(g2)
+    user1.groups.append(g3)
+    
     
     
     # giving user profile

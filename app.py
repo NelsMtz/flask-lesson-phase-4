@@ -1,6 +1,6 @@
 from flask import Flask, make_response
 from flask_migrate import Migrate
-from models import db, User
+from models import db, User, Post, Profile
 
 # create a Flask application object
 app = Flask(__name__)
@@ -28,9 +28,14 @@ def getUsername(username):
 
 @app.route('/users')
 def getUsers():
-    users =[{"id": user.id, "username": user.username, "age": user.age } for user in User.query.all()]
+    users =[user.to_dict() for user in User.query.all()]
     # print(users)
     return make_response(users, 200)
+
+@app.route("/posts")
+def posts():
+    posts = [post.to_dict() for post in Post.query.all()]
+    return make_response(posts, 200)
 
 if __name__ == '__main__':
     app.run(port=5500, debug=True)

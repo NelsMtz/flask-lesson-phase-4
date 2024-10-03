@@ -7,7 +7,7 @@ name = "pypi"
 Flask = "3.0.3"
 flask-migrate = "3.1.0"
 Flask-SQLAlchemy = "3.0.3"
-
+sqlalchemy-serializer = "*"
 
 [requires]
 python_full_version = "3.10.0"
