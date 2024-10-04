@@ -13,7 +13,7 @@ class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
     
     # serialize_only = ("id", "username", "age")
-    serialize_rules = ("-profile.user", "-posts.user")
+    serialize_rules = ("-profile.user", "-posts.user", "-groups.users",)
     
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, unique=True)
@@ -36,7 +36,7 @@ class Profile(db.Model, SerializerMixin):
 class Post(db.Model, SerializerMixin):
     __tablename__ = "posts"
     
-    serialize_rules = ("-user.posts",)
+    serialize_rules = ("-user.posts", '-user.groups',)
     
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(255))
