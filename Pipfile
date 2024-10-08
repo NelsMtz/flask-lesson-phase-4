@@ -11,4 +11,4 @@ sqlalchemy-serializer = "*"
 flask-cors = "*"
 
 [requires]
-python_full_version = "3.10.0"
+python_full_version = "3.8.13"
